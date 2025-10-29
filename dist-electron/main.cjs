@@ -5,24 +5,28 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
 const path_1 = __importDefault(require("path"));
-let mainWindow = null;
-const createWindow = () => {
-    mainWindow = new electron_1.BrowserWindow({
-        width: 1000,
-        height: 700,
+let win;
+function createWindow() {
+    win = new electron_1.BrowserWindow({
+        width: 800,
+        height: 600,
         webPreferences: {
-            preload: path_1.default.join(__dirname, 'preload.js'),
+            nodeIntegration: true,
+            contextIsolation: false,
         },
     });
-    const VITE_DEV_SERVER_URL = process.env.VITE_DEV_SERVER_URL;
-    if (VITE_DEV_SERVER_URL) {
-        mainWindow.loadURL(VITE_DEV_SERVER_URL);
+    // Dev vs Prod
+    const devServerURL = process.env.VITE_DEV_SERVER_URL;
+    if (devServerURL) {
+        // Load Vite dev server (Tailwind HMR works)
+        win.loadURL(devServerURL);
+        win.webContents.openDevTools(); // optional: open devtools
     }
     else {
-        mainWindow.loadFile(path_1.default.join(__dirname, '../dist/index.html'));
+        // Load production build
+        win.loadFile(path_1.default.join(__dirname, '../dist/index.html'));
     }
-    mainWindow.on('closed', () => (mainWindow = null));
-};
+}
 electron_1.app.whenReady().then(createWindow);
 electron_1.app.on('window-all-closed', () => {
     if (process.platform !== 'darwin')
