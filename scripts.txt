@@ -4,3 +4,6 @@
     "build": "vite build && tsc -p electron/tsconfig.json && node rename-to-cjs.mjs",
     "start": "electron .",
     "watch": "npx tailwindcss -i src/index.css -o ./dist/output.css --watch",
+
+    or
+    "dev": "npm run dev:clean && concurrently \"npm run dev:vite\" \"npm run dev:electron\"",
