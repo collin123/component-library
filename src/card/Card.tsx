@@ -2,7 +2,7 @@ import {React, useState} from "react";
 import '../index.css';
 import star from '../assets/star.png';
 
-function Card():Element{
+function Card(){
   const code:[string, React.Dispatch<React.SetStateAction<string>>]=useState(
     "function Card(){\n" +
     " return(\n" +
@@ -32,16 +32,16 @@ function Card():Element{
         </div>
       </header>
       <main className="flex border-2 border-blue-500 rounded text-yellow-300">
+        <pre>{code}</pre>
         <button
           onClick={(e) => {
-          e.preventDefault();
-          navigator.clipboard.writeText(code[0]);
-          alert('Copied to clipboard!');
-        }}
-        className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-sm h-8 text-center">
+            e.preventDefault();
+            navigator.clipboard.writeText(code[0]);
+            alert('Copied to clipboard!');
+          }}
+          className="bg-blue-500 hover:bg-blue-600 text-white px-2 py-1 rounded text-sm h-8 text-center flex-end">
           copy
         </button>
-        <pre>{code}</pre>
       </main>
     </div>
   )
