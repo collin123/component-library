@@ -1,8 +1,14 @@
 import "./index.css"
-import React from "react";
+import SearchBar from "./search-bar/SearchBar";
+import Card from "./card/Card.tsx"
 
 export default function App() {
   return (
-    <div className="bg-blue-500 text-white p-4">Tailwind Test</div>
-  )
+    <>
+      <div className="border-black border-2 rounded h-screen w-screen">
+        <SearchBar />
+        <Card />
+      </div>
+    </>
+)
 }
