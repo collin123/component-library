@@ -1,27 +1,32 @@
-// import { app, BrowserWindow } from 'electron';
+// import { app, BrowserWindow, Menu } from 'electron';
 // import path from 'path';
 //
-// let mainWindow: BrowserWindow | null = null;
+// let win: BrowserWindow;
 //
-// const createWindow = () => {
-//     mainWindow = new BrowserWindow({
-//         width: 1000,
-//         height: 700,
+// function createWindow() {
+//     // Remove native menu entirely
+//     Menu.setApplicationMenu(null);
+//
+//     win = new BrowserWindow({
+//         width: 800,
+//         height: 600,
+//         frame: false,          // removes the title bar & native buttons
+//         autoHideMenuBar: true, // hide menu on Windows/Linux
 //         webPreferences: {
-//             preload: path.join(__dirname, 'preload.js'),
+//             nodeIntegration: true,
+//             contextIsolation: false,
 //         },
 //     });
 //
-//     const VITE_DEV_SERVER_URL = process.env.VITE_DEV_SERVER_URL;
+//     const devServerURL = process.env.VITE_DEV_SERVER_URL;
 //
-//     if (VITE_DEV_SERVER_URL) {
-//         mainWindow.loadURL(VITE_DEV_SERVER_URL);
+//     if (devServerURL) {
+//         win.loadURL(devServerURL);
+//         win.webContents.openDevTools(); // optional
 //     } else {
-//         mainWindow.loadFile(path.join(__dirname, '../dist/index.html'));
+//         win.loadFile(path.join(__dirname, '../dist/index.html'));
 //     }
-//
-//     mainWindow.on('closed', () => (mainWindow = null));
-// };
+// }
 //
 // app.whenReady().then(createWindow);
 //
@@ -33,39 +38,44 @@
 //     if (BrowserWindow.getAllWindows().length === 0) createWindow();
 // });
 
-import { app, BrowserWindow } from 'electron';
-import path from 'path';
+import { app, BrowserWindow } from "electron";
+import path from "path";
 
 let win: BrowserWindow;
 
 function createWindow() {
-    win = new BrowserWindow({
-        width: 800,
-        height: 600,
-        webPreferences: {
-            nodeIntegration: true,
-            contextIsolation: false,
-        },
-    });
+  win = new BrowserWindow({
+    width: 800,
+    height: 600,
+    frame: false, // removes the title bar
+    autoHideMenuBar: true, // hides the menu bar
+    webPreferences: {
+      nodeIntegration: true,
+      contextIsolation: false,
+    },
+  });
 
-    const devServerURL = process.env.VITE_DEV_SERVER_URL;
+  // REMOVE DEFAULT MENU
+  win.removeMenu();
 
-    if (devServerURL) {
-        // Dev: Load Vite dev server (dynamic CSS & HMR)
-        win.loadURL(devServerURL);
-        win.webContents.openDevTools(); // optional
-    } else {
-        // Production: Load built HTML with compiled CSS
-        win.loadFile(path.join(__dirname, '../dist/index.html'));
-    }
+  const devServerURL = process.env.VITE_DEV_SERVER_URL;
+
+  if (devServerURL) {
+    // Dev: Load Vite dev server (dynamic CSS & HMR)
+    win.loadURL(devServerURL);
+    win.webContents.openDevTools(); // optional
+  } else {
+    // Production: Load built HTML with compiled CSS
+    win.loadFile(path.join(__dirname, "../dist/index.html"));
+  }
 }
 
 app.whenReady().then(createWindow);
 
-app.on('window-all-closed', () => {
-    if (process.platform !== 'darwin') app.quit();
+app.on("window-all-closed", () => {
+  if (process.platform !== "darwin") app.quit();
 });
 
-app.on('activate', () => {
-    if (BrowserWindow.getAllWindows().length === 0) createWindow();
+app.on("activate", () => {
+  if (BrowserWindow.getAllWindows().length === 0) createWindow();
 });
