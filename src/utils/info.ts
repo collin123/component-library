@@ -1,0 +1,25 @@
+const languages = {
+  javascript: "javascript",
+  typescript: "typescript",
+  html: "html",
+  css: "css",
+  json: "json",
+  python: "python",
+  scss: "scss",
+  tailwind: "tailwind",
+  node: "node",
+  express: "express",
+  fastapi: "fastapi",
+  django: "django",
+  flask: "flask",
+  react: "react",
+  next: "next",
+  vue: "vue",
+  angular: "angular",
+  svelte: "svelte",
+  ember: "ember",
+  tsx: "tsx",
+  jsx: "jsx",
+} as const;
+
+export default languages;

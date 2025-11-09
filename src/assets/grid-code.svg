@@ -1,0 +1,20 @@
+<!-- save as grid-code.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-labelledby="title-grid-code">
+  <title id="title-grid-code">Component library icon — grid with code</title>
+  <desc>Two-by-two grid of rounded tiles with a code symbol overlay</desc>
+  <!-- background rounded square -->
+  <rect x="2" y="2" width="60" height="60" rx="10" fill="none" stroke="currentColor" stroke-width="2"/>
+  <!-- tiles -->
+  <g fill="currentColor" opacity="0.95">
+    <rect x="9"  y="11" width="20" height="20" rx="4" />
+    <rect x="35" y="11" width="20" height="20" rx="4" />
+    <rect x="9"  y="35" width="20" height="20" rx="4" />
+    <rect x="35" y="35" width="20" height="20" rx="4" />
+  </g>
+  <!-- code symbol overlay: </> -->
+  <g fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="22,34 14,27 22,20" />
+    <polyline points="42,20 50,27 42,34" />
+    <path d="M28 24 L36 40" />
+  </g>
+</svg>

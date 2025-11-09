@@ -1,45 +1,43 @@
-import { useState } from "react";
-import data from "../../public/db.json";
+// import { useState } from "react";
+// import data from "../../public/db.json";
+// import languages from "../utils/info.ts";
+//
+// type ComponentItem = {
+//   name?: string;
+//   category?: string;
+//   language?: string | null;
+//   "file-extension"?: string;
+//   description?: string;
+//   code?: string;
+// };
+//
+// export default function SearchBar() {
+//   return (
+//     <>
+//       <div>
+//         <input type="text" placeholder="Componenet name" />
+//       </div>
+//     </>
+//   );
+// }
 
-type ComponentItem = {
-  name?: string;
-  category?: string;
-  language?: string | null;
-  "file-extension"?: string;
-  description?: string;
-  code?: string;
-};
-
-const customLanguages = {
-  javascript: "javascript",
-  typescript: "typescript",
-  html: "html",
-  css: "css",
-  json: "json",
-  python: "python",
-  scss: "scss",
-  tailwind: "tailwind",
-  node: "node",
-  express: "express",
-  fastapi: "fastapi",
-  django: "django",
-  flask: "flask",
-  react: "react",
-  next: "next",
-  vue: "vue",
-  angular: "angular",
-  svelte: "svelte",
-  ember: "ember",
-  tsx: "tsx",
-  jsx: "jsx",
-} as const;
-
-export default function SearchBar(){
-  return(
+export default function SearchBar() {
+  return (
     <>
-      <div>
-        <input type="text" placeholder="Componenet name" />
+      <div className="mb-6">
+        <label
+          htmlFor="search"
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
+          Search Components
+        </label>
+        <input
+          type="text"
+          id="search"
+          placeholder="Search"
+          className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+        />
       </div>
     </>
-  )
+  );
 }

@@ -2,7 +2,12 @@ import "./index.css";
 import { useEffect, useState } from "react";
 import { Highlight, themes } from "prism-react-renderer";
 import copyText from "./utils/copy";
-import Filter from "./components/filter";
+import Filter from "./components/Filter.tsx";
+import ErrAlert from "./components/ErrAlert.tsx";
+import formatCode from "./utils/formatCode.ts";
+import prettierFormater from "./utils/prettierFormater.ts";
+import languages from "./utils/info.ts";
+import SearchBar from "./components/SearchBar.tsx";
 
 const oneDark = themes.oneDark;
 
@@ -16,15 +21,15 @@ type ComponentItem = {
   code?: string;
 };
 
-const customLanguages = {
-  react: "jsx",
-  javascript: "javascript",
-  typescript: "typescript",
-  html: "html",
-  css: "css",
-  json: "json",
-  python: "python",
-} as const;
+// const customLanguages = {
+//   react: "jsx",
+//   javascript: "javascript",
+//   typescript: "typescript",
+//   html: "html",
+//   css: "css",
+//   json: "json",
+//   python: "python",
+// } as const;
 
 export default function App() {
   const [jsonData, setJsonData] = useState<ComponentItem[]>([]);
@@ -99,6 +104,7 @@ export default function App() {
           <h1 className="text-3xl font-bold text-gray-800">
             Component Library
           </h1>
+          <SearchBar />
           <Filter />
           <div className="flex items-center gap-3">
             {newItemsCount > 0 && (
@@ -112,6 +118,7 @@ export default function App() {
             >
               Refresh
             </button>
+            {/*<RefreshBtn />*/}
           </div>
         </div>
         {lastUpdated && (
@@ -121,9 +128,10 @@ export default function App() {
         )}
 
         {error && (
-          <div className="p-4 mb-6 text-red-700 bg-red-100 rounded-md">
-            {error}
-          </div>
+          // <div className="p-4 mb-6 text-red-700 bg-red-100 rounded-md">
+          //   {error}
+          // </div>
+          <ErrAlert title="Error" description={error} />
         )}
 
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -132,9 +140,11 @@ export default function App() {
               // ensure we only use known keys from the mapping; fallback to 'react' -> 'jsx'
               const langKey =
                 (component.language &&
-                  (component.language as keyof typeof customLanguages)) ||
+                  // (component.language as keyof typeof customLanguages)) ||
+                  (component.language as keyof typeof languages)) ||
                 "react";
-              const language = customLanguages[langKey] || "jsx";
+              // const language = customLanguages[langKey] || "jsx";
+              const language = languages[langKey] || "jsx";
 
               return (
                 <div
@@ -163,6 +173,23 @@ export default function App() {
                     {component.description ?? "No description"}
                   </p>
 
+                  {/*{component.code && (*/}
+                  {/*  <div className="mt-2">*/}
+                  {/*    <div className="text-sm font-medium text-gray-700 mb-1">*/}
+                  {/*      Code:*/}
+                  {/*    </div>*/}
+                  {/*    <div className="bg-gray-800 rounded-lg p-3 text-sm overflow-x-auto">*/}
+                  {/*      <button*/}
+                  {/*        onClick={() => copyText(component.code!)}*/}
+                  {/*        className="bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700 transition"*/}
+                  {/*      >*/}
+                  {/*        Copy*/}
+                  {/*      </button>*/}
+                  {/*      <Highlight*/}
+                  {/*        code={(component.code || "").trim()}*/}
+                  {/*        language={language}*/}
+                  {/*        theme={oneDark}*/}
+                  {/*      >*/}
                   {component.code && (
                     <div className="mt-2">
                       <div className="text-sm font-medium text-gray-700 mb-1">
@@ -170,13 +197,13 @@ export default function App() {
                       </div>
                       <div className="bg-gray-800 rounded-lg p-3 text-sm overflow-x-auto">
                         <button
-                          onClick={() => copyText(component.code!)}
+                          onClick={() => copyText(formatCode(component.code!))}
                           className="bg-blue-600 text-white text-xs px-2 py-1 rounded hover:bg-blue-700 transition"
                         >
                           Copy
                         </button>
                         <Highlight
-                          code={(component.code || "").trim()}
+                          code={formatCode(component.code!)}
                           language={language}
                           theme={oneDark}
                         >

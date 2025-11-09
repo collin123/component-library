@@ -49,6 +49,7 @@ function createWindow() {
     height: 600,
     frame: false, // removes the title bar
     autoHideMenuBar: true, // hides the menu bar
+    icon: path.join(__dirname, "../src/assets/grid-code.svg"), // <-- can use SVG
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,

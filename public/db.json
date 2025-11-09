@@ -1,14 +1,14 @@
 [
   {
-    "name": "PrimaryButton",
+    "name": "Primary Button",
     "category": "UI",
     "description": "Reusable primary button with click handler prop.",
-    "code": "import React from 'react';\\nexport default function PrimaryButton({onClick, children}:{onClick?:()=>void, children:any}){return <button onClick={onClick} className='px-4 py-2 bg-blue-600 text-white rounded'>{children}</button>}",
+    "code": "import React from 'react';\nexport default function PrimaryButton({onClick, children}:{onClick?:()=>void, children:any}){return <button onClick={onClick} className='px-4 py-2 bg-blue-600 text-white rounded'>{children}</button>}",
     "language": "tsx",
     "file-extension": ".tsx"
   },
   {
-    "name": "IconButton",
+    "name": "Icon Button",
     "category": "UI",
     "description": "Button with an inline SVG icon and accessible label.",
     "code": "const IconButton = ({label, icon}) => <button aria-label={label} className='p-2 rounded'>{icon}</button>; export default IconButton;",
@@ -16,7 +16,7 @@
     "file-extension": ".jsx"
   },
   {
-    "name": "TextInput",
+    "name": "Text Input",
     "category": "Form",
     "description": "Controlled text input component for forms.",
     "code": "export default function TextInput({value,onChange,placeholder}){return <input value={value} onChange={e=>onChange(e.target.value)} placeholder={placeholder} className='border p-2 rounded w-full'/>}",
@@ -24,7 +24,7 @@
     "file-extension": ".tsx"
   },
   {
-    "name": "SearchBar",
+    "name": "Search Bar",
     "category": "Form",
     "description": "Search input with debounce helper for remote queries.",
     "code": "<form className='flex items-center gap-2'><input className='border p-2 rounded flex-1' placeholder='Search...' /></form>",
@@ -32,15 +32,15 @@
     "file-extension": ".html"
   },
   {
-    "name": "SelectDropdown",
+    "name": "Select Dropdown",
     "category": "Form",
     "description": "Accessible select/dropdown component with options.",
-    "code": "export default function Select({options, value, onChange}){return <select value={value} onChange={e=>onChange(e.target.value)}>{options.map(o=>\\n  <option key={o.value} value={o.value}>{o.label}</option>\\n)}</select>}",
+    "code": "export default function Select({options, value, onChange}){return <select value={value} onChange={e=>onChange(e.target.value)}>{options.map(o=>\n  <option key={o.value} value={o.value}>{o.label}</option>\n)}</select>}",
     "language": "tsx",
     "file-extension": ".tsx"
   },
   {
-    "name": "ToggleSwitch",
+    "name": "Toggle Switch",
     "category": "UI",
     "description": "A11y-friendly toggle switch component.",
     "code": "function Toggle({on, onToggle}){return <button role='switch' \n aria-checked={on} onClick={()=>onToggle(!on)} className={on? 'bg-green-500':'bg-gray-300'}> </button>} export default Toggle;",
@@ -51,7 +51,7 @@
     "name": "Modal",
     "category": "UI",
     "description": "Centered modal overlay with close callback.",
-    "code": "export default function Modal({open,onClose,children}){\\n  if(!open) return null;\\n  return <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>\\n    <div className='bg-white p-4 rounded'>{children}<button onClick={onClose}>Close</button></div>\\n  </div>\\n}",
+    "code": "export default function Modal({open,onClose,children}){\n  if(!open) return null;\n  return <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>\n    <div className='bg-white p-4 rounded'>{children}<button onClick={onClose}>Close</button></div>\n  </div>\n}",
     "language": "jsx",
     "file-extension": ".jsx"
   },
@@ -75,7 +75,7 @@
     "name": "Card",
     "category": "Layout",
     "description": "Simple content card with title and body.",
-    "code": "export default function Card({title,children}){return <div className='p-4 rounded shadow bg-white'>\\n  <h3>{title}</h3>\\n  <div>{children}</div>\\n</div>}",
+    "code": "export default function Card({title,children}){return <div className='p-4 rounded shadow bg-white'>\n  <h3>{title}</h3>\n  <div>{children}</div>\n</div>}",
     "language": "tsx",
     "file-extension": ".tsx"
   },
@@ -91,7 +91,7 @@
     "name": "Navbar",
     "category": "Navigation",
     "description": "Responsive top navigation bar with brand and links.",
-    "code": "export default function Navbar(){return <nav className='flex items-center justify-between p-4 bg-white shadow'>\\n  <div className='font-bold'>Brand</div>\\n  <div className='hidden md:flex gap-4'><a>Home</a><a>Docs</a></div>\\n</nav>}",
+    "code": "export default function Navbar(){return <nav className='flex items-center justify-between p-4 bg-white shadow'>\n  <div className='font-bold'>Brand</div>\n  <div className='hidden md:flex gap-4'><a>Home</a><a>Docs</a></div>\n</nav>}",
     "language": "tsx",
     "file-extension": ".tsx"
   },
@@ -104,15 +104,15 @@
     "file-extension": ".html"
   },
   {
-    "name": "HeroSection",
+    "name": "Hero Section",
     "category": "Layout",
     "description": "Prominent hero / banner section with headline.",
-    "code": "<section class='py-12'>\\n  <h1 class='text-3xl font-bold'>Welcome</h1>\\n  <p class='mt-2 text-gray-600'>Lead text</p>\\n</section>",
+    "code": "<section class='py-12'>\n  <h1 class='text-3xl font-bold'>Welcome</h1>\n  <p class='mt-2 text-gray-600'>Lead text</p>\n</section>",
     "language": "tailwind css",
     "file-extension": ".html"
   },
   {
-    "name": "GridLayout",
+    "name": "Grid Layout",
     "category": "Layout",
     "description": "CSS Grid wrapper for 3-column layouts.",
     "code": ".grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}",
@@ -123,7 +123,7 @@
     "name": "Accordion",
     "category": "UI",
     "description": "Expandable/collapsible accordion panel component.",
-    "code": "export function AccordionItem({title,children}){\\n  const [open,setOpen]=React.useState(false);\\n  return <div>\\n    <button onClick={()=>setOpen(!open)}>{title}</button>\\n    {open&&<div>{children}</div>}\\n  </div>\\n}",
+    "code": "export function AccordionItem({title,children}){\n  const [open,setOpen]=React.useState(false);\n  return <div>\n    <button onClick={()=>setOpen(!open)}>{title}</button>\n    {open&&<div>{children}</div>}\n  </div>\n}",
     "language": "tsx",
     "file-extension": ".tsx"
   },
@@ -131,7 +131,7 @@
     "name": "Tabs",
     "category": "UI",
     "description": "Tabbed content component (client-side tabs).",
-    "code": "export function Tabs({tabs}){\\n  const [i,setI]=React.useState(0);\\n  return <div>\\n    <nav>{tabs.map((t,idx)=><button key={idx} onClick={()=>setI(idx)}>{t.title}</button>)}</nav>\\n    <div>{tabs[i].content}</div>\\n  </div>\\n}",
+    "code": "export function Tabs({tabs}){\n  const [i,setI]=React.useState(0);\n  return <div>\n    <nav>{tabs.map((t,idx)=><button key={idx} onClick={()=>setI(idx)}>{t.title}</button>)}</nav>\n    <div>{tabs[i].content}</div>\n  </div>\n}",
     "language": "tsx",
     "file-extension": ".tsx"
   },
@@ -139,7 +139,7 @@
     "name": "Pagination",
     "category": "Navigation",
     "description": "Simple numeric pagination controls.",
-    "code": "export function Pagination({page, total, onChange}){return <div className='flex gap-2'>{Array.from({length:total}).map((_,i)=>\\n  <button key={i} onClick={()=>onChange(i+1)} className={i+1===page?'font-bold':''}>{i+1}</button>\\n)}</div>}",
+    "code": "export function Pagination({page, total, onChange}){return <div className='flex gap-2'>{Array.from({length:total}).map((_,i)=>\n  <button key={i} onClick={()=>onChange(i+1)} className={i+1===page?'font-bold':''}>{i+1}</button>\n)}</div>}",
     "language": "tsx",
     "file-extension": ".tsx"
   },
@@ -147,7 +147,7 @@
     "name": "Breadcrumbs",
     "category": "Navigation",
     "description": "Breadcrumb trail component for page hierarchy.",
-    "code": "export default function Breadcrumbs({items}){return <nav aria-label='Breadcrumb'>\n  <ol className='flex gap-2'>{items.map((i,k)=><li key={k}>{i}</li>)}</ol>\\n</nav>}",
+    "code": "export default function Breadcrumbs({items}){return <nav aria-label='Breadcrumb'>\n  <ol className='flex gap-2'>{items.map((i,k)=><li key={k}>{i}</li>)}</ol>\n</nav>}",
     "language": "jsx",
     "file-extension": ".jsx"
   },
@@ -160,7 +160,7 @@
     "file-extension": ".jsx"
   },
   {
-    "name": "ChipSmall",
+    "name": "Chip Small",
     "category": "UI",
     "description": "Compact removable chip used for filters (alternate).",
     "code": "export function ChipSmall({label,onRemove}){return <span className='px-2 py-1 bg-gray-200 rounded'>{label}<button onClick={onRemove}>×</button></span>}",
@@ -168,7 +168,7 @@
     "file-extension": ".tsx"
   },
   {
-    "name": "ToastCenter",
+    "name": "Toast Center",
     "category": "Feedback",
     "description": "Centered toast notification example.",
     "code": "export default function ToastCenter({message}){return <div className='fixed top-4 left-1/2 transform -translate-x-1/2 bg-gray-800 text-white p-3 rounded'>{message}</div>}",
@@ -176,15 +176,15 @@
     "file-extension": ".tsx"
   },
   {
-    "name": "SyntaxHighlighter",
+    "name": "Syntax Highlighter",
     "category": "Code",
     "description": "Wrapper around a syntax highlighting library (prism-react-renderer).",
-    "code": "import Highlight from 'prism-react-renderer';\\nexport default function Syntax({code,lang}){\\n  return <Highlight code={code} language={lang}>{(props)=> <pre {...props}/>}<\/Highlight>\\n}",
+    "code": "import Highlight from 'prism-react-renderer';\nexport default function Syntax({code,lang}){\n  return <Highlight code={code} language={lang}>{(props)=> <pre {...props}/>}</Highlight>\n}",
     "language": "tsx",
     "file-extension": ".tsx"
   },
   {
-    "name": "CodeEditorSimple",
+    "name": "Code Editor Simple",
     "category": "Dev",
     "description": "Lightweight contenteditable code editor area.",
     "code": "<div contenteditable class='bg-gray-800 text-white p-2 rounded' spellcheck='false'></div>",
@@ -192,7 +192,7 @@
     "file-extension": ".html"
   },
   {
-    "name": "DebounceUtil",
+    "name": "Debounce Util",
     "category": "Utility",
     "description": "Generic debounce function to limit call frequency.",
     "code": "export function debounce(fn,ms){let t;return(...a)=>{clearTimeout(t);t=setTimeout(()=>fn(...a),ms)}}",
@@ -208,15 +208,15 @@
     "file-extension": ".ts"
   },
   {
-    "name": "FormValidatorsPy",
+    "name": "Form Validators Py",
     "category": "Python",
     "description": "Small Python validators for email and URL.",
-    "code": "import re\\ndef is_email(s):\\n  return bool(re.match(r'^[^@]+@[^@]+\\\\.[^@]+$', s))\\n\\ndef is_url(s):\\n  return s.startswith('http')",
+    "code": "import re\ndef is_email(s):\n  return bool(re.match(r'^[^@]+@[^@]+\\.[^@]+$', s))\n\ndef is_url(s):\n  return s.startswith('http')",
     "language": "python",
     "file-extension": ".py"
   },
   {
-    "name": "SecondaryButton",
+    "name": "Secondary Button",
     "category": "UI",
     "description": "Reusable secondary button with outline style.",
     "code": "export default function SecondaryButton({onClick, children}:{onClick?:()=>void, children:any}){return <button onClick={onClick} className='px-4 py-2 border border-gray-500 text-gray-700 rounded hover:bg-gray-100'>{children}</button>}",
@@ -224,7 +224,7 @@
     "file-extension": ".tsx"
   },
   {
-    "name": "FloatingActionButton",
+    "name": "Floating Action Button",
     "category": "UI",
     "description": "Circular floating action button for actions.",
     "code": "export default function FloatingActionButton({icon,onClick}){return <button onClick={onClick} className='fixed bottom-4 right-4 bg-blue-600 text-white p-4 rounded-full shadow-lg hover:bg-blue-700'>{icon}</button>}",
@@ -232,7 +232,7 @@
     "file-extension": ".tsx"
   },
   {
-    "name": "AlertBanner",
+    "name": "Alert Banner",
     "category": "Feedback",
     "description": "Simple alert banner with message and optional type.",
     "code": "export default function AlertBanner({message,type='info'}){const colors={'info':'bg-blue-100 text-blue-800','warning':'bg-yellow-100 text-yellow-800','error':'bg-red-100 text-red-800'};return <div className={`p-3 rounded ${colors[type]}`}>{message}</div>}",
@@ -240,7 +240,7 @@
     "file-extension": ".tsx"
   },
   {
-    "name": "CheckboxInput",
+    "name": "Checkbox Input",
     "category": "Form",
     "description": "Custom styled checkbox input.",
     "code": "export default function CheckboxInput({checked,onChange,label}){return <label className='flex items-center gap-2'><input type='checkbox' checked={checked} onChange={e=>onChange(e.target.checked)} className='form-checkbox'/>{label}</label>}",
@@ -248,7 +248,7 @@
     "file-extension": ".tsx"
   },
   {
-    "name": "ProgressBar",
+    "name": "Progress Bar",
     "category": "UI",
     "description": "Animated progress bar component.",
     "code": "export default function ProgressBar({value,max=100}){return <div className='w-full bg-gray-200 rounded h-3'><div className='bg-blue-600 h-3 rounded transition-all' style={{width:`${(value/max)*100}%`}}></div></div>}",
@@ -256,7 +256,7 @@
     "file-extension": ".tsx"
   },
   {
-    "name": "BadgeStatus",
+    "name": "Badge Status",
     "category": "UI",
     "description": "Colored status badge component.",
     "code": "export const BadgeStatus = ({status}) => {const colors={online:'bg-green-100 text-green-800',offline:'bg-gray-100 text-gray-800',busy:'bg-red-100 text-red-800'};return <span className={`px-2 py-1 rounded-full text-xs ${colors[status]||'bg-gray-100 text-gray-800'}`}>{status}</span>};",
@@ -264,7 +264,7 @@
     "file-extension": ".jsx"
   },
   {
-    "name": "SimpleLogger",
+    "name": "Simple Logger",
     "category": "Utility",
     "description": "Lightweight logging utility in JS.",
     "code": "export function log(msg){console.log('[LOG]', msg)}",
@@ -272,7 +272,7 @@
     "file-extension": ".js"
   },
   {
-    "name": "ApiFetcher",
+    "name": "Api Fetcher",
     "category": "Network",
     "description": "TypeScript fetch wrapper with error handling.",
     "code": "export async function apiFetcher<T>(url:string):Promise<T>{const res=await fetch(url);if(!res.ok)throw new Error(`HTTP ${res.status}`);return await res.json()}",
@@ -280,15 +280,15 @@
     "file-extension": ".ts"
   },
   {
-    "name": "MarkdownRenderer",
+    "name": "Markdown Renderer",
     "category": "UI",
     "description": "Render markdown string as HTML safely.",
-    "code": "import React from 'react';import ReactMarkdown from 'react-markdown';export default function MarkdownRenderer({content}:{content:string}){return <ReactMarkdown>{content}</ReactMarkdown>}",
+    "code": "import React from 'react';\nimport ReactMarkdown from 'react-markdown';\nexport default function MarkdownRenderer({content}:{content:string}){return <ReactMarkdown>{content}</ReactMarkdown>}",
     "language": "tsx",
     "file-extension": ".tsx"
   },
   {
-    "name": "ValidatePhonePy",
+    "name": "Validate Phone Py",
     "category": "Python",
     "description": "Python function to validate phone numbers.",
     "code": "import re\ndef is_phone(s):\n  return bool(re.match(r'^\\+?\\d{7,15}$', s))",
