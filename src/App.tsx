@@ -5,9 +5,9 @@ import copyText from "./utils/copy";
 import Filter from "./components/Filter.tsx";
 import ErrAlert from "./components/ErrAlert.tsx";
 import formatCode from "./utils/formatCode.ts";
-import prettierFormater from "./utils/prettierFormater.ts";
 import languages from "./utils/info.ts";
 import SearchBar from "./components/SearchBar.tsx";
+import { fetchComponents } from "./utils/fetchData";
 
 const oneDark = themes.oneDark;
 
@@ -40,17 +40,7 @@ export default function App() {
 
   const fetchData = async () => {
     try {
-      // cache-buster + no-store to avoid browser / dev-server caching
-      const res = await fetch(`/db.json?t=${Date.now()}`, {
-        cache: "no-store",
-      });
-      if (!res.ok) {
-        setError(`HTTP ${res.status}`);
-        setLoading(false);
-        return;
-      }
-      const data = (await res.json()) as ComponentItem[];
-      const incoming = Array.isArray(data) ? data : [data];
+      const incoming = await fetchComponents();
       // detect new items by simple length and shallow name comparison
       const existingNames = new Set(jsonData.map((d) => d.name));
       const added = incoming.filter(
