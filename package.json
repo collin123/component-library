@@ -2,9 +2,10 @@
   "name": "component-library",
   "private": true,
   "version": "0.0.0",
-  "main": "dist-electron/main.cjs",
+  "main": "temp/main.cjs",
   "type": "module",
   "scripts": {
+    "electron:build": "tsc -p electron/tsconfig.json && node rename-to-cjs.mjs",
     "dev:massacre": "taskkill /F /IM node.exe\n",
     "dev:clean": "npx kill-port 5173",
     "dev:vite": "vite",
@@ -13,15 +14,14 @@
     "build": "vite build",
     "preview": "vite preview",
     "start": "npm run build && electron .",
-    "dev:refresh": "nodemon --exec \"electron .\" --watch electron --watch src",
-    "start:server": "ts-node src/server/server.ts",
-    "dev:server": "nodemon --watch src --ext ts --exec ts-node src/server/server.ts"
+    "dev:refresh": "nodemon --exec \"electron .\" --watch electron --watch src"
   },
   "dependencies": {
     "express": "^5.1.0",
     "prism-react-renderer": "^2.4.1",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
+    "react-select": "^5.10.2",
     "vite-plugin-svgr": "^4.5.0"
   },
   "devDependencies": {

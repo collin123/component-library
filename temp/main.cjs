@@ -9,26 +9,22 @@ const path_1 = __importDefault(require("path"));
 let win = null;
 function createWindow() {
     win = new electron_1.BrowserWindow({
-        width: 650, // width of launcher
-        height: 400, // height of launcher
-        x: undefined, // center automatically
-        y: undefined, // center automatically
-        center: true, // center on screen
-        frame: false, // remove OS title bar
-        transparent: true, // make background transparent
-        backgroundColor: "#00000000", // full transparency (mandatory on Windows)
-        alwaysOnTop: true, // keep above all windows
+        width: 650,
+        height: 400,
+        frame: false, // removes title bar and OS frame
+        transparent: true, // makes background transparent
+        backgroundColor: "#00000000", // mandatory for full transparency on Windows
+        alwaysOnTop: true, // stays on top like Raycast
         skipTaskbar: true, // hide from taskbar
-        resizable: false, // prevent resizing
-        minimizable: false, // no minimize button
-        maximizable: false, // no maximize button
-        closable: true, // show close button
-        hasShadow: false, // shadow will be handled via CSS
-        focusable: true, // allow window to receive focus
-        show: false, // show after ready-to-show
-        roundedCorners: true, // Windows 11 only: rounded corners
+        resizable: false,
+        minimizable: false,
+        maximizable: false,
+        closable: true,
+        hasShadow: false, // shadow handled by CSS
+        focusable: true,
+        show: false,
         webPreferences: {
-            nodeIntegration: true, // enable Node.js integration
+            nodeIntegration: true,
             contextIsolation: false,
         },
     });
